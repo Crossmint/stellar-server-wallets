@@ -12,8 +12,12 @@ export function WalletBalance() {
     async function fetchBalances() {
       if (!wallet) return;
       try {
-        const balances = await wallet.balances();
-        setBalances(balances);
+        const response = await fetch("/api/balance", {
+          method: "POST",
+          body: JSON.stringify({ walletAddress: wallet.address }),
+        });
+        const data = await response.json();
+        setBalances(data.balances);
       } catch (error) {
         console.error("Error fetching wallet balances:", error);
         alert("Error fetching wallet balances: " + error);

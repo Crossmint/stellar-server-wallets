@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     const wallet = await crossmintWallets.getWallet(
       body.walletAddress,
       {
-        chain: "base-sepolia",
+        chain: "stellar",
         signer: {
           type: "email",
         },
